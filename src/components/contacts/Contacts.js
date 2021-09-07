@@ -1,35 +1,34 @@
-import React from 'react'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import Contact from './Contact';
 
 const Contacts = () => {
+    const contacts = useSelector((state) => state.contacts);
+    console.log(contacts);
     return (
         <div>
-            <table class="table table-dark table-striped">
+            <table className="table shadow">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
+                        <th>
+                            <div className="custom-control custom-checkbox">
+                                <input type="checkbox" className="custom-control-input" />
+                                <label className="custom-control-label"></label>
+                            </div>
+                        </th>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>E-mail</th>
+                        <th>Actions </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                    </tr>
+                    {
+                        contacts.map(contact => (
+                            <Contact contact={contact} />
+                        ))
+                    }
+
                 </tbody>
             </table>
         </div>
